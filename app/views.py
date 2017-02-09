@@ -1,7 +1,7 @@
-from app import app
+from app import api
 
 
-@app.route('/')
-@app.route('/index')
+@api.route('/')
+@api.route('/index')
 def index():
-    return "Hello, World!"
+    return "Connected to octagon API version: full-retard"
