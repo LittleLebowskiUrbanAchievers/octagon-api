@@ -1,1 +1,1 @@
-web: python octagon.py
+web: gunicorn app:app

@@ -14,6 +14,7 @@ Flask-WhooshAlchemy==0.56
 Flask-WTF==0.14.2
 flipflop==1.0
 guess-language==0.2
+gunicorn==19.6.0
 itsdangerous==0.24
 Jinja2==2.9.5
 MarkupSafe==0.23
