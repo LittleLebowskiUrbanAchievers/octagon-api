@@ -1,7 +1,8 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+db = SQLAlchemy(app)
 
 
-api = Flask(__name__)
-# This is only at the bottom because that's how the tutorial I used
-# was setup. Will fix layout issues later.
 from app import views
