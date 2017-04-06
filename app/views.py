@@ -8,6 +8,11 @@ from app import app
 def api_index():
     return "Connected to octagon API version: 0.2"
 
+@app.route('/<fid>')
+def api_fid(fid):
+    return "Hello {}!".format(fid)
+
+
 @app.route('/name', methods=['POST'])
 def api_name():
     _error = None
