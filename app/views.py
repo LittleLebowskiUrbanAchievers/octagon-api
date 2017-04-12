@@ -1,5 +1,6 @@
-from flask import Flask, request, jsonify, escape
-from app import app, db
+from flask import jsonify
+from app import app, models
+from operator import itemgetter
 
 
 @app.route('/')
@@ -15,20 +16,12 @@ def api_fid(fid):
     return 'Fighter ID: {}'.format(fid)
 
 
-@app.route('/name/<name>')
-def api_name(name):
-    print(db)
-    # TODO: return JSON record of all fighter stats from DB by name.
-    return 'Fighter Name: {}'.format(name)
-
-
-
-# @app.route('/name', methods=['POST'])
-# def api_name():
-#     _error = None
-#     _name = None
-#     try:
-#         _name = request.get_json().get('name')
-#     except:
-#         _error = '#### ERROR in api_name()'
-#     return jsonify({'name': _name, 'id': 1, 'error': _error})
+@app.route('/getFighters')
+def api_name():
+    session = models.loadsession()
+    recs = []
+    for row in session.query(models.Fighters).all():
+        rec = row.fid, row.name
+        recs += [rec]
+    recs.sort(key=itemgetter(0))
+    return jsonify(recs)
