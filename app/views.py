@@ -1,6 +1,9 @@
-from flask import jsonify
+from flask import jsonify, request
 from app import app, models
 from operator import itemgetter
+
+#UFC Badassery
+from UFCML import ufcml
 
 
 @app.route('/')
@@ -16,12 +19,34 @@ def api_fid(fid):
     return 'Fighter ID: {}'.format(fid)
 
 
+@app.route('/predict',methods=['GET'])
+def api_ml():
+    f1id = int(request.args.get('f1id'))
+    f2id = int(request.args.get('f2id'))
+
+    f1prob,f2prob,uncertainty = ufcml.predict(f1id,f2id)
+
+    return jsonify({
+        'f1prob':f1prob,
+        'f2prob':f2prob,
+        'uncertainty':uncertainty
+        })
+
+
 @app.route('/getFighters')
 def api_name():
     session = models.loadsession()
-    recs = []
+
+    recs = {'fighters':[]}
+
     for row in session.query(models.Fighters).all():
-        rec = row.fid, row.name
-        recs += [rec]
-    recs.sort(key=itemgetter(0))
+        recs['fighters'].append({'id':row.fid,
+                     'name':row.name})
+    #recs.sort(key=itemgetter(0))
+
     return jsonify(recs)
+
+
+
+
+
