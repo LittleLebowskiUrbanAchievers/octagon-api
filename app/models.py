@@ -13,7 +13,7 @@ def loadsession():
     engine = create_engine(db_path, echo=False)
 
     metadata = MetaData(engine)
-    fighters = Table('fighters', metadata, autoload=True, schema='octagon')
+    fighters = Table('fighters', metadata, autoload=True, autoload_with=engine, schema='octagon')
     mapper(Fighters, fighters)
 
     _session = sessionmaker(bind=engine)
