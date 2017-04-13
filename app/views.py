@@ -20,7 +20,7 @@ def api_fid():
     fighter_name = request.args.get('name')
     session = models.loadsession()
     print(inspect(session.query(models.Fighters).first()))
-    return jsonify({'fid': 0})
+    return jsonify({'fid': 0}) # Does nothing right now
 
 
 @app.route('/predict', methods=['GET'])
