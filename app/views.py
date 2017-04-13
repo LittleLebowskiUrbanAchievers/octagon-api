@@ -15,12 +15,36 @@ def api_index():
     return "Connected to octagon API version: 1.0"
 
 
-@app.route('/fid', methods=['GET'])
-def api_fid():
-    fighter_name = request.args.get('name')
+@app.route('/stats', methods=['GET'])
+def api_stats():
+    fid = int(request.args.get('fid'))
     session = models.loadsession()
-    fid = session.query(models.Fighters).filter_by(name=fighter_name).first().fid
-    return jsonify({'fid': 0}) # Does nothing right now
+    f = session.query(models.Fighters).filter_by(fid=fid).first()
+
+    stats = {
+        'name':f.name,
+        'fid':f.fid,
+        'height':f.height_inches,
+        'weight':f.weight_lbs,
+        'association':f.association,
+        'division':f.division,
+        'country':f.country,
+        'reach':f.reach_inches,
+        'strike_offense_per_min':f.strike_offense_per_min,
+        'strike_offense_accuracy':f.strike_offense_accuracy,
+        'strike_defense_per_min':f.strike_defense_per_min,
+        'strike_defense_accuracy':f.strike_defense_accuracy,
+        'takedowns_per_fight':f.takedowns_per_fight,
+        'takedowns_accuracy':f.takedowns_accuracy,
+        'takedowns_defense':f.takedowns_defense,
+        'submissions_per_fight':f.submissions_per_fight,
+        'wins':f.wins,
+        'losses':f.losses,
+        'draws':f.draws,
+        'total_fights':f.total_fights
+    }
+
+    return jsonify(stats) # Does nothing right now
 
 
 @app.route('/predict', methods=['GET'])
