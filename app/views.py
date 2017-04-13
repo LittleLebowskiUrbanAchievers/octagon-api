@@ -19,7 +19,7 @@ def api_index():
 def api_fid():
     fighter_name = request.args.get('name')
     session = models.loadsession()
-    print(inspect(session.query(models.Fighters).first()))
+    fid = session.query(models.Fighters).filter_by(name=fighter_name).first().fid
     return jsonify({'fid': 0}) # Does nothing right now
 
 
