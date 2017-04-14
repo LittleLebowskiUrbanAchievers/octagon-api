@@ -1,9 +1,6 @@
 ######### Base Imports #############
 import pandas as pd
-# from ggplot import *
-# import matplotlib.pyplot as plt
 import psycopg2
-# import scipy
 import math
 import pickle
 import numpy as np
