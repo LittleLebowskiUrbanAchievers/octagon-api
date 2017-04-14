@@ -1,9 +1,9 @@
 ######### Base Imports #############
 import pandas as pd
-from ggplot import *
-import matplotlib.pyplot as plt
+# from ggplot import *
+# import matplotlib.pyplot as plt
 import psycopg2
-import scipy
+# import scipy
 import math
 import pickle
 import numpy as np
@@ -21,8 +21,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
-from sklearn.gaussian_process import GaussianProcessClassifier
-from sklearn.gaussian_process.kernels import RBF
+# from sklearn.gaussian_process import GaussianProcessClassifier
+# from sklearn.gaussian_process.kernels import RBF
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, VotingClassifier
 from sklearn import preprocessing
