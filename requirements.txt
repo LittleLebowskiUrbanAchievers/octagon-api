@@ -31,3 +31,4 @@ sklearn==0.0
 SQLAlchemy==1.1.9
 statsmodels==0.8.0
 Werkzeug==0.12.1
+flask-cors==3.0.2

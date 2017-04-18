@@ -1,5 +1,6 @@
 from flask import jsonify, request
 from app import app, models
+from flask.ext.cors import cross_origin
 
 
 
@@ -10,11 +11,13 @@ from UFCML import ufcml
 @app.route('/')
 @app.route('/index')
 @app.route('/version')
+@cross_origin()
 def api_index():
     return "Connected to octagon API version: 1.0"
 
 
 @app.route('/stats', methods=['GET'])
+@cross_origin()
 def api_stats():
     fid = int(request.args.get('fid'))
     session = models.loadsession()
@@ -47,6 +50,7 @@ def api_stats():
 
 
 @app.route('/predict', methods=['GET'])
+@cross_origin()
 def api_ml():
     f1id = int(request.args.get('f1id'))
     f2id = int(request.args.get('f2id'))
@@ -61,6 +65,7 @@ def api_ml():
 
 
 @app.route('/getFighters')
+@cross_origin()
 def api_name():
     session = models.loadsession()
     recs = {'fighters': []}
