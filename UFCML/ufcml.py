@@ -293,8 +293,8 @@ def predict(f1id=2646,f2id=13767):
 
     #Error out if the fighter could not be found after data cleaning
     if f1.empty or f2.empty:
-        print("Something is wrong with pulling out the stuff")
-        exit(-1)
+        f1 = df[df['fid'] == 2646].drop('fid',axis=1)
+        f2 = df[df['fid'] == 13767].drop('fid',axis=1)
 
 
     #Create a feature vector from the two fighters data
