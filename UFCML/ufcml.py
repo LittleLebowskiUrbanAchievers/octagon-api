@@ -232,7 +232,8 @@ def train_models():
 #\return: array with probabilites of winning [fighter1,fighter2,Uncertainty]
 def predict(f1id=2646,f2id=13767):
 
-
+    print(f1id)
+    print(f2id)
     #Open a connection to the database
     #TODO: Use env varibles for the connectoin strings
     try:
@@ -292,8 +293,10 @@ def predict(f1id=2646,f2id=13767):
 
 
     #Error out if the fighter could not be found after data cleaning
-    if f1.empty or f2.empty:
+    if f1.empty:
         f1 = df[df['fid'] == 2646].drop('fid',axis=1)
+
+    if f2.empty:
         f2 = df[df['fid'] == 13767].drop('fid',axis=1)
 
 
